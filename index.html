@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="이윤지의 마케팅·기획 포트폴리오">
+  <title>이윤지 — Marketing & Creative Portfolio</title>
+  <style>
+    :root {
+      --site-primary: #D8F36A;
+      --site-secondary: #20211D;
+      --site-background: #F7F7F2;
+      --site-on-primary: #20211D;
+      --site-on-secondary: #F7F7F2;
+      --site-on-background: #20211D;
+      --site-font-body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      --site-font-heading: "Arial", "Pretendard", sans-serif;
+      --site-heading-scale: 1;
+      --site-spacing-scale: 1;
+      --site-radius-scale: 1;
+      --site-decoration-opacity: 1;
+      --ink: #20211D;
+      --muted: #77786F;
+      --line: #DCDDD4;
+      --paper: #F7F7F2;
+      --lime: #D8F36A;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--site-on-background);
+      background: var(--site-background);
+      font-family: var(--site-font-body);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .site-root {
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      border-radius: 0;
+      background-color: light-dark(var(--site-background), #191A17);
+      color: light-dark(var(--ink), #F7F7F2);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: calc(24px * var(--site-spacing-scale)) 5.5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .logo { font-weight: 900; letter-spacing: -.06em; font-size: 1.15rem; }
+    .logo span { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--site-primary); margin-left: 4px; }
+    .nav-links { display: flex; gap: 28px; font-size: .82rem; color: var(--muted); }
+    .nav-links a:hover, .text-link:hover { color: var(--ink); }
+    .hero {
+      max-width: 1240px;
+      min-height: min(760px, 82vh);
+      margin: 0 auto;
+      padding: 110px 5.5% 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 800; color: var(--muted); }
+    .hero h1 {
+      font-family: var(--site-font-heading);
+      font-size: clamp(4rem, 11.5vw, 9.5rem);
+      letter-spacing: -.095em;
+      line-height: .91;
+      margin: 34px 0 28px;
+      font-weight: 900;
+    }
+    .hero h1 .outline { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-top: 70px; }
+    .brand-line { max-width: 460px; font-size: clamp(1.1rem, 2vw, 1.55rem); font-weight: 650; letter-spacing: -.045em; line-height: 1.45; }
+    .brand-line em { font-style: normal; background: var(--site-primary); padding: 0 .16em; }
+    .scroll-note { font-size: .72rem; color: var(--muted); letter-spacing: .12em; white-space: nowrap; }
+    .section { padding: 100px 5.5%; }
+    .section-inner { max-width: 1240px; margin: 0 auto; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 36px; gap: 20px; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); letter-spacing: -.075em; line-height: 1; margin: 12px 0 0; }
+    .section-sub { color: var(--muted); font-size: .86rem; max-width: 300px; }
+    .work-section { background: var(--site-secondary); color: var(--site-on-secondary); }
+    .work-section .eyebrow, .work-section .section-sub { color: #B6B7AE; }
+    .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .work-card { display: flex; flex-direction: column; min-width: 0; }
+    .work-art { aspect-ratio: 4 / 4.5; padding: 22px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; border-radius: calc(4px * var(--site-radius-scale)); }
+    .work-art .num { font-size: .72rem; letter-spacing: .12em; }
+    .work-art .art-title { font-size: clamp(1.7rem, 3.5vw, 3.6rem); line-height: .94; letter-spacing: -.08em; font-weight: 900; z-index: 1; }
+    .work-art .art-foot { font-size: .68rem; letter-spacing: .12em; z-index: 1; }
+    .art-one { background: #D8F36A; color: #20211D; }
+    .art-one::after { content: ""; position: absolute; width: 70%; aspect-ratio: 1; border: 1px solid #20211D; border-radius: 50%; right: -10%; top: 16%; box-shadow: 0 0 0 18px #D8F36A, 0 0 0 19px #20211D, 0 0 0 38px #D8F36A, 0 0 0 39px #20211D; opacity: .65; }
+    .art-two { background: #F0B7A7; color: #522A25; }
+    .art-two::after { content: "↗"; position: absolute; font-size: 15rem; line-height: 1; right: -7%; top: 13%; font-weight: 200; transform: rotate(8deg); opacity: .72; }
+    .art-three { background: #B7C7F8; color: #222C59; }
+    .art-three::after { content: ""; position: absolute; width: 62%; height: 75%; right: 8%; top: 16%; border: 1px solid #222C59; transform: rotate(12deg); box-shadow: 14px 14px 0 -1px #B7C7F8, 14px 14px 0 0 #222C59, 28px 28px 0 -1px #B7C7F8, 28px 28px 0 0 #222C59; opacity: .7; }
+    .card-meta { display: flex; justify-content: space-between; gap: 12px; align-items: start; padding: 18px 0 0; }
+    .card-meta h3 { font-size: 1.12rem; letter-spacing: -.04em; margin: 0 0 5px; }
+    .card-meta p { color: #B6B7AE; font-size: .8rem; margin: 0; }
+    .arrow { border: 1px solid #686960; border-radius: 50%; width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 8%; align-items: start; }
+    .about-intro { font-size: clamp(1.5rem, 3vw, 2.55rem); letter-spacing: -.065em; line-height: 1.3; font-weight: 650; margin: 0; }
+    .about-intro span { text-decoration: underline; text-decoration-color: var(--site-primary); text-decoration-thickness: 5px; text-underline-offset: 5px; }
+    .about-copy { color: var(--muted); font-size: .95rem; max-width: 540px; margin: 0 0 26px; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+    .skill-list span { border: 1px solid var(--line); border-radius: 100px; padding: 8px 13px; font-size: .75rem; }
+    .facts { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); margin-top: 36px; }
+    .fact { padding: 17px 0; border-bottom: 1px solid var(--line); }
+    .fact small { color: var(--muted); display: block; font-size: .72rem; margin-bottom: 4px; }
+    .fact strong { font-size: .9rem; font-weight: 650; }
+    .contact { background: var(--site-primary); color: var(--site-on-primary); }
+    .contact .eyebrow { color: #525B2C; }
+    .contact-layout { display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+    .contact h2 { font-size: clamp(3.5rem, 9vw, 8rem); }
+    .contact-note { max-width: 300px; font-size: .9rem; margin: 0 0 25px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-link { border: 1px solid rgba(32,33,29,.45); border-radius: 100px; padding: 12px 18px; font-size: .8rem; font-weight: 750; transition: background .2s, color .2s; }
+    .contact-link:hover { background: var(--site-secondary); color: var(--site-on-secondary); }
+    footer { background: var(--site-secondary); color: #B6B7AE; padding: 22px 5.5%; font-size: .72rem; }
+    .footer-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; gap: 15px; }
+    @media (max-width: 760px) {
+      .nav { padding-top: 18px; padding-bottom: 18px; }
+      .nav-links { gap: 14px; font-size: .75rem; }
+      .hero { min-height: 650px; padding-top: 90px; padding-bottom: 55px; }
+      .hero h1 { font-size: clamp(3.6rem, 15vw, 6.5rem); }
+      .hero-bottom, .section-head, .contact-layout { align-items: start; flex-direction: column; }
+      .scroll-note { align-self: end; }
+      .section { padding-top: 72px; padding-bottom: 72px; }
+      .work-grid { grid-template-columns: 1fr; gap: 34px; }
+      .work-art { aspect-ratio: 1.25 / 1; }
+      .work-art .art-title { font-size: clamp(2.8rem, 11vw, 5rem); }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact h2 { font-size: clamp(3.2rem, 16vw, 6rem); }
+      .contact-note { margin-top: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="site-root" id="top">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="logo" href="#top" aria-label="이윤지 포트폴리오 홈">YUNJI<span></span></a>
+      <div class="nav-links">
+        <a href="#work">WORK</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <div class="eyebrow">Marketing · Planning · Creative</div>
+        <h1>LEE<br><span class="outline">YUNJI.</span></h1>
+      </div>
+      <div class="hero-bottom">
+        <p class="brand-line">사람의 관심을 읽고,<br><em>브랜드를 경험으로</em> 연결합니다.</p>
+        <a class="scroll-note" href="#work">SCROLL TO EXPLORE ↓</a>
+      </div>
+    </header>
+
+    <section class="section work-section" id="work">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Selected works / 01—03</div>
+            <h2>Things I make.</h2>
+          </div>
+          <p class="section-sub">기획부터 제작, 현장 운영과 성과 분석까지.<br>관심을 행동으로 잇는 작업을 소개합니다.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <a class="work-art art-one" href="#contact" aria-label="숏폼 콘텐츠 마케팅 작업 문의">
+              <span class="num">01 / CONTENT</span>
+              <span class="art-title">STOP.<br>SCROLL.<br>LOOK.</span>
+              <span class="art-foot">SHORT-FORM & DIGITAL</span>
+            </a>
+            <div class="card-meta">
+              <div>
+                <h3>숏폼 콘텐츠 마케팅</h3>
+                <p>타깃 분석 · 릴스 기획 · 성과 개선</p>
+              </div>
+              <a class="arrow" href="#contact" aria-label="숏폼 콘텐츠 작업 문의">↗</a>
+            </div>
+          </article>
+          <article class="work-card">
+            <a class="work-art art-two" href="#contact" aria-label="아티스트 프로모션 작업 문의">
+              <span class="num">02 / ARTIST</span>
+              <span class="art-title">MAKE<br>THE<br>MOMENT.</span>
+              <span class="art-foot">ARTIST PROMOTION</span>
+            </a>
+            <div class="card-meta">
+              <div>
+                <h3>아티스트 프로모션</h3>
+                <p>공연 홍보 · 영상 제작 · 광고 운영</p>
+              </div>
+              <a class="arrow" href="#contact" aria-label="아티스트 프로모션 작업 문의">↗</a>
+            </div>
+          </article>
+          <article class="work-card">
+            <a class="work-art art-three" href="#contact" aria-label="오프라인 경험 및 현장 운영 작업 문의">
+              <span class="num">03 / EXPERIENCE</span>
+              <span class="art-title">COME<br>IN.<br>STAY.</span>
+              <span class="art-foot">OFFLINE EXPERIENCE</span>
+            </a>
+            <div class="card-meta">
+              <div>
+                <h3>오프라인 경험 운영</h3>
+                <p>방문객 동선 · 현장 운영 · 고객 경험</p>
+              </div>
+              <a class="arrow" href="#contact" aria-label="오프라인 경험 작업 문의">↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">A little about me</div>
+            <h2>Curious by nature.</h2>
+          </div>
+          <p class="section-sub">관찰하고, 시도하고, 결과를 확인합니다.</p>
+        </div>
+        <div class="about-grid">
+          <p class="about-intro">안녕하세요.<br>관심이 생기는 순간을 관찰하고 <span>다음 행동을 만드는</span> 마케터 이윤지입니다.</p>
+          <div>
+            <p class="about-copy">미디어와 아트테크놀로지를 공부하며 기획과 제작 역량을 쌓았습니다. 숏폼 채널 운영과 아티스트 프로모션을 통해 타깃에 맞는 메시지를 고민하고, 조회와 유입 등 실제 반응을 바탕으로 개선점을 찾습니다.</p>
+            <p class="about-copy">오프라인 현장에서는 방문객 흐름과 대기 상황을 살피며 더 많은 사람이 경험을 이어갈 수 있도록 운영을 조정했습니다. 온라인과 오프라인의 접점을 이해하고, 브랜드와 사람 사이의 연결을 설계하고 싶습니다.</p>
+            <div class="skill-list" aria-label="주요 역량">
+              <span>콘텐츠 기획·제작</span><span>SNS 마케팅</span><span>타깃 리서치</span><span>성과 분석</span><span>현장 운영</span><span>AI 활용 제작</span>
+            </div>
+            <div class="facts">
+              <div class="fact"><small>STUDY</small><strong>Media & Art Technology</strong></div>
+              <div class="fact"><small>TOOLS</small><strong>Ps · Ai · Pr · Ae · Figma</strong></div>
+              <div class="fact"><small>INTEREST</small><strong>Entertainment & Brand</strong></div>
+              <div class="fact"><small>APPROACH</small><strong>Observe → Create → Improve</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="section-inner">
+        <div class="eyebrow">Have a project in mind?</div>
+        <div class="contact-layout">
+          <h2>LET’S<br>CONNECT<span>↗</span></h2>
+          <div>
+            <p class="contact-note">새로운 프로젝트와 협업 제안을 기다립니다.<br>편하게 연락해 주세요.</p>
+            <div class="contact-links">
+              <!-- 아래 이메일과 링크는 실제 정보로 교체해 주세요. -->
+              <a class="contact-link" href="mailto:your-email@example.com">EMAIL ↗</a>
+              <a class="contact-link" href="https://github.com/" target="_blank" rel="noreferrer">GITHUB ↗</a>
+              <a class="contact-link" href="#top">BACK TO TOP ↑</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 LEE YUNJI</span>
+        <span>MADE WITH CURIOSITY.</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
